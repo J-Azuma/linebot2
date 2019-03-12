@@ -29,7 +29,8 @@ class LinebotController < ApplicationController
         }
     end
     def select_word
-        seeds = ["idea1", "idea2", "idea3", "idea4"]
+        seeds = ["うんこ", "ちんこ", "おちんちん", "おっぱい", "おまんちん
+            スプラッシュ"]
         seeds.sample
     end
 end
