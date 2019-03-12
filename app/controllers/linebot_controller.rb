@@ -31,7 +31,7 @@ class LinebotController < ApplicationController
         }
         head :ok
     end
-    private 
+    #private 
     def client
         @client ||= Line::Bot::Client.new { |config|
             config.channel_secret = ENV["LINE_CHANNEL_SECRET"]
