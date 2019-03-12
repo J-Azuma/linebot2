@@ -14,7 +14,8 @@ class LinebotController < ApplicationController
                 case event.type
                 when Line::Bot::Event::MessageType::Text
                     seed = select_word
-                    client.reply_message(event['replyToken'], seed)
+                    message = [type: 'text', text: "#{seed}"]
+                    client.reply_message(event['replyToken'], message)
                 end
             end   
         }
