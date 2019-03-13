@@ -21,9 +21,7 @@ class LinebotController < ApplicationController
                         message = [type: 'text', text: "いってらいっしゃい"]
                         client.reply_message(event['replyToken'], message)
                     else
-                        seed = select_word.sample
-                        message = [type: 'text', text: "#{seed}"]
-                        client.reply_message(event['replyToken'], message)
+                        reply(0)
                     end
                 end
             end   
@@ -37,13 +35,11 @@ class LinebotController < ApplicationController
             config.channel_token = ENV["LINE_CHANNEL_TOKEN"]
         }
     end
-    def select_word
+    def reply(n)
         seeds = ["うんこ", "ちんこ", "おちんちん", "おっぱい", "おまんちん
             スプラッシュ"]
-        #seeds.sample
-    end
-
-    def reply
-        
+        seed = seeds[n]
+        message = [type: 'text', text: "#{seed}"]
+        client.reply_message(event['replyToken'], message)
     end
 end
