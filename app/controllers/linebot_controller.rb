@@ -13,9 +13,16 @@ class LinebotController < ApplicationController
             when Line::Bot::Event::Message
                 case event.type
                 when Line::Bot::Event::MessageType::Text
-                    seed = select_word
-                    message = [type: 'text', text: "#{seed}"]
-                    client.reply_message(event['replyToken'], message)
+                    word = event.message['text'] 
+                    if "ただいま" in word 
+                        client.reply_message(event['replyToken'], "おかえり")
+                    elsif "いってきます" in word
+                        client.reply_message(event['replyToken'], "いってらっしゃい")
+                    else
+                        seed = select_word
+                        message = [type: 'text', text: "#{seed}"]
+                        client.reply_message(event['replyToken'], message)
+                    end
                 end
             end   
         }
@@ -32,5 +39,9 @@ class LinebotController < ApplicationController
         seeds = ["うんこ", "ちんこ", "おちんちん", "おっぱい", "おまんちん
             スプラッシュ"]
         seeds.sample
+    end
+
+    def reply
+        
     end
 end
