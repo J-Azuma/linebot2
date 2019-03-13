@@ -21,7 +21,7 @@ class LinebotController < ApplicationController
                         message = [type: 'text', text: "いってらいっしゃい"]
                         client.reply_message(event['replyToken'], message)
                     else
-                        seed = select_word
+                        seed = select_word.sample
                         message = [type: 'text', text: "#{seed}"]
                         client.reply_message(event['replyToken'], message)
                     end
@@ -40,7 +40,7 @@ class LinebotController < ApplicationController
     def select_word
         seeds = ["うんこ", "ちんこ", "おちんちん", "おっぱい", "おまんちん
             スプラッシュ"]
-        seeds.sample
+        #seeds.sample
     end
 
     def reply
