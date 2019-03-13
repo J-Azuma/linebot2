@@ -4,6 +4,8 @@ class LinebotController < ApplicationController
     def callback
         body = request.body.read
         signature = request.env['HTTP_X_LINE_SIGNATURE']
+        seeds = ["うんこ", "ちんこ", "おちんちん", "おっぱい", "おまんちん
+            スプラッシュ", "おかえり", "いってらっしゃい"]
         unless client.validate_signature(body, signature)
             head :bad_request
         end
@@ -15,11 +17,11 @@ class LinebotController < ApplicationController
                 when Line::Bot::Event::MessageType::Text
                     word = event.message['text'] 
                     if word.include?("ただいま")
-                        reply(5)
+                        seed = seeds[5]
                     elsif word.include?("いってきます")
-                        reply(6)
+                        seed = seeds[6]
                     else
-                        reply(0)
+                        seed = seeds.sample
                     end
                     message = [type: 'text', text: "#{seed}"]
                     client.reply_message(event['replyToken'], message)
@@ -35,9 +37,6 @@ class LinebotController < ApplicationController
             config.channel_token = ENV["LINE_CHANNEL_TOKEN"]
         }
     end
-    def reply(n)
-        seeds = ["うんこ", "ちんこ", "おちんちん", "おっぱい", "おまんちん
-            スプラッシュ", "おかえり", "いってらっしゃい"]
-        seed = seeds[n]
-    end
+
+        #seeds = ["うんこ", "ちんこ", "おちんちん", "おっぱい", "おまんちんスプラッシュ", "おかえり", "いってらっしゃい"]
 end
