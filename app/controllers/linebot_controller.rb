@@ -15,9 +15,11 @@ class LinebotController < ApplicationController
                 when Line::Bot::Event::MessageType::Text
                     word = event.message['text'] 
                     if word.include?("ただいま")
-                        client.reply_message(event['replyToken'], "おかえり")
+                        message = [type: 'text', text: 'おかえり']
+                        client.reply_message(event['replyToken'], message)
                     elsif word.include?("いってきます")
-                        client.reply_message(event['replyToken'], "いってらっしゃい")
+                        message = [type: 'text', text: "いってらいっしゃい"]
+                        client.reply_message(event['replyToken'], message)
                     else
                         seed = select_word
                         message = [type: 'text', text: "#{seed}"]
