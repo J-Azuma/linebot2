@@ -28,7 +28,7 @@ class LinebotController < ApplicationController
                         seed = greetings[2]
                     elsif word.include?("お休み")
                         seed = greetings[3]
-                    elsif word.include?(complaints)
+                    elsif word.include?(complaints.to_s)
                         seed = praises.sample
                     else
                         seed = seeds.sample
