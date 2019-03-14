@@ -10,6 +10,7 @@ class LinebotController < ApplicationController
         praises = ["いつも頑張っててすごいね", "よしよし、毎日お疲れ様", "無理しなくてもいいんだよ？",
                    "身体壊さないようにね", "今日はゆっくり休んでね", "今日も大変だったね"]
         complaints = ["つかれた", "疲れた", "つらい", "辛い", "褒めて", "誉めて", "ほめて"]
+        complaints = complaints.to_s
         unless client.validate_signature(body, signature)
             head :bad_request
         end
@@ -28,7 +29,7 @@ class LinebotController < ApplicationController
                         seed = greetings[2]
                     elsif word.include?("お休み")
                         seed = greetings[3]
-                    elsif word.include?(complaints.to_s)
+                    elsif word.include?(complaints)
                         seed = praises.sample
                     else
                         seed = seeds.sample
