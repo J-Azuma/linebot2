@@ -4,8 +4,8 @@ class LinebotController < ApplicationController
     def callback
         body = request.body.read
         signature = request.env['HTTP_X_LINE_SIGNATURE']
-        seeds = ["うんこ", "ちんこ", "おちんちん", "おっぱい", "おまんちんスプラッシュ", 
-                 "ちんちん", "お尻がおまんこになっちゃう"]
+        seeds = ["foo", "bar", "fiz", "baz", "foobar", 
+                 "fizbaz", "お尻がおまんこになっちゃう"]
         greetings = ["おはよう。今日も頑張ってね", "いってらっしゃい", "お帰り、一日お疲れ様", "お休みなさい。"]
         praises = ["いつも頑張っててすごいね", "よしよし、毎日お疲れ様", "無理しなくてもいいんだよ？",
                    "身体壊さないようにね", "今日はゆっくり休んでね", "今日も大変だったね"]
